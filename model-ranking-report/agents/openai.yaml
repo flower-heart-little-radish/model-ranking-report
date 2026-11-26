@@ -1,0 +1,3 @@
+interface:
+  display_name: "大模型横评报告"
+  short_description: "检索多语证据、核对版本和价格，生成带能力排行与场景建议的 HTML 报告"

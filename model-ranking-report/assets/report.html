@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>$title</title>
+<style>
+:root{--ink:#172528;--muted:#526166;--accent:#11594c;--paper:#fffefa;--ground:#f3f3ed;--line:#dce1d9;--stripe:#f6f8f4;--mint:#e8f3ed;--serif:"Noto Serif SC","Songti SC","SimSun",serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ground);color:var(--ink);font:16px/1.75 system-ui,"Microsoft YaHei",sans-serif}
+a{color:var(--accent);text-underline-offset:.2em}a:hover{color:#003a31}a:focus-visible,[tabindex]:focus-visible{outline:3px solid #ab6419;outline-offset:4px}
+.frame{max-width:1160px;margin:auto;padding:0 42px}
+header{background:#142e2c;color:#f7f9f2;border-bottom:5px solid #498473;padding:65px 0 52px}
+header p{color:#dfede6;margin:.5rem 0 0;max-width:710px}
+header .date{color:#a9d1bf;margin:0 0 10px;font-size:.93rem}
+h1,h2{font-family:var(--serif);font-weight:750;line-height:1.26;letter-spacing:.015em}
+h1{font-size:clamp(2.6rem,7vw,4.7rem);margin:0 0 20px;max-width:920px}
+h2{font-size:clamp(1.82rem,4vw,2.55rem);margin:0 0 16px}
+h3{line-height:1.4;font-size:1.16rem;margin:0 0 .55rem}
+nav{background:var(--paper);border-bottom:1px solid var(--line)}
+nav .frame{display:flex;flex-wrap:wrap;gap:8px 24px;padding-top:11px;padding-bottom:11px}
+nav a{text-decoration:none;font-weight:650;font-size:.93rem}
+nav a:hover{text-decoration:underline}
+main.frame{background:var(--paper);padding-top:12px;padding-bottom:50px}
+section{padding:33px 0;scroll-margin-top:12px}
+section+section{border-top:1px solid var(--line)}
+p{margin:.5rem 0 1rem}
+.intro{color:var(--muted);max-width:850px}
+.tablebox{border:1px solid var(--line);border-radius:10px;overflow:auto}
+table{border-collapse:collapse;width:100%;text-align:left;font-size:.93rem}
+thead{background:#edf2eb;color:#213a33}
+th,td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{white-space:nowrap;font-weight:750}
+tbody tr:last-child>*{border-bottom:none}
+tbody tr:nth-child(even){background:#fbfcf8}
+tbody th{font-weight:680}
+td p{margin:.22rem 0 0}
+.scenarios td{width:41%}
+.scenarios th:first-child{min-width:135px}
+.ranks th{min-width:125px}
+.order{font-weight:730;color:var(--accent);line-height:1.65}
+.ranks td p{font-size:.91rem}
+.matrix{min-width:855px}
+.matrix th,.matrix td{vertical-align:middle}
+.matrix thead th:not(:first-child),.score{text-align:right}
+.matrix thead th:last-child,.total{background:#e3eee5}
+.matrix tbody th span:last-child{display:inline-block;vertical-align:middle}
+.matrix small{display:block;color:var(--muted);font-size:.74rem;line-height:1.4;font-weight:500}
+.matrix .place{display:inline-grid;place-items:center;vertical-align:middle;background:#edf0e8;color:#326050;width:1.65rem;height:1.65rem;border-radius:50%;font-size:.78rem;margin-right:.5rem}
+.matrix .leading .place{background:#d7ebe0;color:#173f32}
+.score{font-variant-numeric:tabular-nums;font-size:1.06rem;font-weight:670;white-space:nowrap}
+.best{background:var(--mint);color:#174b3b}
+.total{font-size:1.16rem;color:#174b3b;font-weight:815}
+.matrix sup{color:#7b4b1f;font-weight:800}
+.matrix tbody th{min-width:217px}
+.money{font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:670}
+.callout{background:#eef4ec;border-left:4px solid #528474;padding:15px 19px;margin:18px 0}
+.callout p:last-child,.evidence p:last-child{margin-bottom:0}
+.refs{font-size:.84rem;color:var(--muted);margin:.45rem 0 .9rem;line-height:1.75}
+.notes{color:var(--muted);font-size:.88rem}
+.scroll-note{display:none}
+.sources-list{padding-left:1.4rem}.sources-list li{margin:.4rem 0;overflow-wrap:anywhere}.score-details{margin:1rem 0}.score-details summary{cursor:pointer;font-weight:700;color:var(--accent)}.score-details li{margin:.35rem 0}.score-details ul{padding-left:1.3rem}
+.evidence{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.evidence article{padding:17px 19px;border:1px solid var(--line);border-radius:10px}
+.evidence p{margin:.35rem 0 .65rem}
+.steps{margin:.5rem 0 1rem;padding-left:1.3rem}
+.steps li{margin:.34rem 0}
+footer{padding:15px 0 26px;color:var(--muted);font-size:.83rem}
+@media(max-width:690px){.frame{padding-left:19px;padding-right:19px}header{padding:39px 0 33px}section{padding:25px 0}.evidence{grid-template-columns:1fr}.ranks,.scenarios{min-width:585px}th,td{padding:10px 11px}nav .frame{gap:5px 14px}.scroll-note{display:block;margin:0 0 7px}.matrix{min-width:735px;table-layout:fixed}.matrix th:first-child{position:sticky;left:0;z-index:1;width:153px;min-width:0;border-right:1px solid var(--line)}.matrix tbody th{background:var(--paper)}.matrix tbody tr:nth-child(even) th{background:#fbfcf8}.matrix tbody th span:last-child{max-width:103px;overflow-wrap:anywhere;line-height:1.32}.matrix .place{margin-right:5px;width:1.3rem;height:1.3rem;font-size:.72rem}.matrix thead th{white-space:normal}.matrix .score{font-size:.98rem}}
+@media print{html,body,main.frame,header{background:white!important;color:#12231b!important}.frame{max-width:none;padding:0 4mm}header{padding:6mm 0;border-bottom:2px solid #33564b}header p,header .date{color:#283f32}h1{font-size:30pt}h2{font-size:21pt}nav,footer{display:none}.tablebox{overflow:visible}.matrix,.ranks,.scenarios{min-width:0}.matrix tbody th{min-width:0}table{font-size:8.5pt}th,td{padding:5px 6px}thead{display:table-header-group}tr,.evidence article{break-inside:avoid}a{color:#174b3b}section{padding:16px 0}}
+</style>
+</head>
+<body>
+<header><div class="frame">
+<p class="date"><time datetime="$date">$display_date</time> · 大模型横评</p>
+<h1>$title</h1>
+<p>$summary</p>
+</div></header>
+<nav aria-label="报告目录"><div class="frame">
+<a href="#choices">场景选型</a><a href="#models">参评模型</a><a href="#ranking">能力排行</a><a href="#scores">能力总榜</a><a href="#cost">成本</a><a href="#evidence">实测与出处</a>
+</div></nav>
+<main class="frame">
+<section id="choices">
+<h2>场景选型</h2>
+$choices
+</section>
+<section id="models">
+<h2>参评模型</h2>
+$models
+</section>
+<section id="ranking">
+<h2>能力排行</h2>
+$ranking
+</section>
+<section id="scores">
+<h2>$score_title</h2>
+<p class="intro">$score_intro</p>
+<p class="notes scroll-note">横向滑动查看各项分数与总分。</p>
+$matrix
+<p class="notes">† 暂定评分。— 表示缺测。末位小数用于呈现排序和加总，细微差别需结合证据看。</p>
+<div class="callout"><h3>评分口径</h3>
+$methodology
+</div>
+$score_details
+</section>
+<section id="cost">
+<h2>成本排行</h2>
+<p class="intro">$cost_context</p>
+$costs
+</section>
+<section id="evidence">
+<h2>实测结果与出处</h2>
+<div class="evidence">
+$evidence
+</div>
+<h3>来源索引</h3>
+$sources
+</section>
+</main>
+<footer><div class="frame">数据与入口截至 $display_date。报告可离线阅读，原始来源链接需要联网。</div></footer>
+</body>
+</html>
